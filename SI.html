@@ -1,0 +1,81 @@
+<html>
+    <head>
+    <title>Materias</title>
+    <style>
+        body{
+                background-color: gray;
+            }     
+      .results{
+        padding-left: 50%;
+      }
+      
+      h1{
+            color: black;
+            padding-top: 20px;
+        }
+      
+    </style>
+    </head>
+  <body style="text-align:center;">
+    <div style ="background:darkslategray;">
+    <font color ="white" size="6px"> 
+    <b>Materias de 3er Semestre de 3A Programación</b>
+    </font>
+
+    </div>
+    <form name="cali" id ="myForm" action="" sytle ="font-size: 20mpx">
+      <p>Nombre completo: <input type ="text" id ="name" name="nombre" class="form-control dato" placeholder=""/></p> 
+      <p>Geometría Analítica: <input type ="text" id ="ga" class="dato" placeholder=""/></p> 
+        <p>Biología: <input type ="text" id ="bi" class="dato" placeholder=""/></p>
+        <p>POO: <input type ="text" id ="poo" class="dato" placeholder="" /></p>
+        <p>POE: <input type ="text" id ="poe" class="dato" placeholder=""/></p>
+        <p>Ingles: <input type ="text" id ="in" class="dato" placeholder=""/></p>
+        <p>Ética: <input type ="text" id ="et" class="dato" placeholder=""/></p>
+        <p>Promedio: <input type="Text" name="resultado" id="promedio" class="dato"></p>
+        <input type="button" value="Imprimir" onclick="javascript:window.print()"/>
+        <input type ="button" value="Reset data" onclick="fun()" />
+        <input type="button" value="Agregar" onclick="viwsArrayInpunt()" />
+        <input type="button" value="Promedio" onclick="CalcularPromedio()" />
+    </form>
+</div>
+        <script>
+            function fun(){
+              document.getElementById("myForm").reset();
+              const renglones = document.querySelectorAll('.renglon');
+              renglones.forEach(renglon => {
+                renglon.remove();
+              });
+            }
+            function viwsArrayInpunt(){
+              var arrayInpunt = new Array();
+              var inputsValues = [];
+              var inputsValues = document.getElementsByClassName('dato'),
+
+              namesValues  = [].map.call(inputsValues,function(dataInput){
+                  arrayInpunt.push(dataInput.value);
+              });
+              let trNode = document.createElement("tr");
+              trNode.classList.add("renglon");
+              arrayInpunt.forEach(function(inputsValuesData){
+                //console.log("El dato es:", inputsValuesData);
+                let tdNode = document.createElement("td");
+                let textNode = document.createTextNode(inputsValuesData);
+                tdNode.appendChild(textNode);
+                trNode.appendChild(tdNode);
+              });
+
+              document.getElementById("tabla").appendChild(trNode);
+            }
+            function CalcularPromedio(){
+              var v1 = document.getElementById("ga").value;
+              var v2 = document.getElementById("bi").value;
+              var v3 = document.getElementById("poo").value;
+              var v4 = document.getElementById("poe").value;
+              var v5 = document.getElementById("in").value;
+              var v6 = document.getElementById("et").value;
+              var pro = (parseFloat(v1)+parseFloat(v2)+parseFloat(v3)+parseFloat(v4)+parseFloat(v5)+parseFloat(v6))/6;
+              document.cali.resultado.value = pro;
+            }
+        </script>    
+      </body>
+</html>
